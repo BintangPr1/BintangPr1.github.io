@@ -3,20 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bintang Pradiva | Portfolio</title>
+    <title>Portfolio | Bintang Pradiva</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>My Project</h1>
-    <ul>
-      <li><a href="./starbucks/index.html">Starbucks Redesign</a></li>
-      <li><a href="./Litwell/index.html">LitWell.</a></li>
-      <li>
-        <a href="https://github.com/BintangPr1/Reinfit"
-          >Reinfit (Android Studio Project)</a
-        >
-      </li>
-      <hr />
-      <hr />
-    </ul>
+    <div class="bgSVGs">
+      <img src="./Assets/bg1.svg" />
+      <img src="./Assets/bg2.svg" />
+    </div>
+
+    <div id="portfolio">
+      <!-- Header -->
+      <img
+        src="./Assets/photo.png"
+        class="photo"
+        alt="Profile Picture"
+        width="220px"
+      />
+      <h1 class="name">Bintang Pradiva Putra Prayoga</h1>
+      <h4 class="position">Front-End Developer</h4>
+      <div class="contactBox flex">
+        <div class="email flex">
+          <img src="./Assets/email.svg" width="18px" />
+          <p>pradivabintang.pb@gmail.com</p>
+        </div>
+        <div class="location flex">
+          <img src="./Assets/location.svg" width="18pxs" />
+          <p>Tangerang, Banten</p>
+        </div>
+        <div class="phone flex">
+          <img src="./Assets/phone.svg" width="18px" />
+          <p>+62 859 3916 5044</p>
+        </div>
+      </div>
+      <div class="line"></div>
+
+      <!-- Content -->
+      <div class="contentBox flex">
+        <div class="left">
+          <div class="about">
+            <h4>About me</h4>
+            <p>
+              Hello! I'm Bintang, a committed front-end developer who loves
+              making websites look amazing and work seamlessly.
+            </p>
+          </div>
+          <div class="edu">
+            <h4>Education</h4>
+            <h5>BINUS University</h5>
+            <span></span>
+            <p>Computer Science Student</p>
+            <br />
+            <span></span>
+            <p>Expected Graduation: 2025</p>
+          </div>
+          <div class="exp">
+            <h4>Experience</h4>
+            <h5>Projects</h5>
+            <span></span>
+            <p>
+              <a href="./starbucks/index.html">Starbucks Redesign</a>
+            </p>
+            <br /><span></span>
+            <p>
+              <a href="./Litwell/index.html">LitWell</a>
+            </p>
+            <br /><span></span>
+            <p>
+              <a href="https://github.com/BintangPr1/Reinfit"
+                >Reinfit (Android Studio Project)</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="right">
+          <h4>Skills & Tools</h4>
+          <div class="DSBox">
+            <!-- <h5>Languages</h5> -->
+            <div class="DSNames">
+              <p>HTML</p>
+              <p>CSS</p>
+              <p>JavaScript</p>
+              <p>Bootstrap 5</p>
+              <p>Figma</p>
+            </div>
+          </div>
+          <div class="LBox">
+            <br />
+            <h4>Professional Networking</h4>
+            <div class="LNames">
+              <p>
+                <a href="https://github.com/BintangPr1">GitHub</a>
+              </p>
+              <p>
+                <a href="https://www.linkedin.com/in/bintangpradivaputra/"
+                  >LinkedIn</a
+                >
+              </p>
+            </div>
+          </div>
+          <!-- <div class="EXBox">
+            <h5>Editing Softwares</h5>
+            <div class="ESNames">
+              <p>Filmore</p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
   </body>
 </html>
