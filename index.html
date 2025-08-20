@@ -10,6 +10,7 @@
     />
     <style>
       :root {
+        /* Dark mode colors (default) */
         --primary: #6366f1;
         --primary-dark: #4f46e5;
         --secondary: #8b5cf6;
@@ -25,6 +26,40 @@
         --bg-card: rgba(30, 41, 59, 0.8);
         --border: rgba(148, 163, 184, 0.2);
         --shadow: rgba(0, 0, 0, 0.3);
+        --gradient-1: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        --gradient-2: linear-gradient(
+          135deg,
+          var(--accent) 0%,
+          var(--primary) 100%
+        );
+        --gradient-3: linear-gradient(
+          135deg,
+          var(--success) 0%,
+          var(--accent) 100%
+        );
+      }
+
+      /* Light mode colors */
+      body.light-mode {
+        --primary: #8b7355;
+        --primary-dark: #6b5842;
+        --secondary: #a67f5d;
+        --accent: #958b62;
+        --success: #6b705c;
+        --warning: #cb997e;
+        --text-primary: #433422;
+        --text-secondary: #665544;
+        --text-muted: #9c8e7b;
+        --bg-primary: #faf3e0;
+        --bg-secondary: #f0e6d3;
+        --bg-tertiary: #e6d5c0;
+        --bg-card: rgba(255, 250, 240, 0.9);
+        --border: rgba(139, 115, 85, 0.1);
+        --shadow: rgba(67, 52, 34, 0.1);
         --gradient-1: linear-gradient(
           135deg,
           var(--primary) 0%,
@@ -122,9 +157,17 @@
         transition: all 0.3s ease;
       }
 
+      body.light-mode nav {
+        background: rgba(250, 250, 250, 0.9);
+      }
+
       nav.scrolled {
         background: rgba(15, 23, 42, 0.95);
         box-shadow: 0 4px 20px var(--shadow);
+      }
+
+      body.light-mode nav.scrolled {
+        background: rgba(250, 250, 250, 0.95);
       }
 
       .nav-container {
@@ -179,6 +222,37 @@
       .nav-links a:hover::after,
       .nav-links a.active::after {
         width: 100%;
+      }
+
+      /* Mode Toggle Button */
+      .mode-toggle {
+        background: none;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+        color: var(--text-secondary);
+        transition: color 0.3s ease;
+        margin-left: 1rem;
+      }
+
+      .mode-toggle:hover {
+        color: var(--text-primary);
+      }
+
+      .sun-icon {
+        display: none;
+      }
+
+      .moon-icon {
+        display: block;
+      }
+
+      body.light-mode .sun-icon {
+        display: block;
+      }
+
+      body.light-mode .moon-icon {
+        display: none;
       }
 
       .mobile-toggle {
@@ -756,6 +830,34 @@
           <li><a href="#projects" class="nav-link">Projects</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
+        <button
+          id="modeToggle"
+          class="mode-toggle"
+          aria-label="Toggle dark/light mode"
+        >
+          <svg
+            class="sun-icon"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 2zm0 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 12zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9 9.9a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.9 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9-9.9a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0z"
+            />
+          </svg>
+          <svg
+            class="moon-icon"
+            width="24"
+            height="24"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+            />
+          </svg>
+        </button>
         <div class="mobile-toggle" id="mobileToggle">
           <span></span>
           <span></span>
@@ -1242,6 +1344,29 @@
     </footer>
 
     <script>
+      // Theme toggle functionality
+      const modeToggle = document.getElementById("modeToggle");
+      const body = document.body;
+
+      // Check for saved user preference, if any, on load of the website
+      const darkMode = localStorage.getItem("darkMode");
+
+      // If the user previously selected dark mode, apply it
+      if (darkMode === "false") {
+        body.classList.add("light-mode");
+      }
+
+      modeToggle.addEventListener("click", () => {
+        // Toggle light mode on button click
+        body.classList.toggle("light-mode");
+
+        // Save user preference to localStorage
+        localStorage.setItem(
+          "darkMode",
+          body.classList.contains("light-mode") ? "false" : "true"
+        );
+      });
+
       // Navigation functionality
       const navbar = document.getElementById("navbar");
       const navLinks = document.querySelectorAll(".nav-link");
