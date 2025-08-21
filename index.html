@@ -224,35 +224,94 @@
         width: 100%;
       }
 
-      /* Mode Toggle Button */
+      /* Mode Toggle Switch */
       .mode-toggle {
-        background: none;
-        border: none;
-        padding: 8px;
-        cursor: pointer;
-        color: var(--text-secondary);
-        transition: color 0.3s ease;
+        position: relative;
+        width: 60px;
+        height: 30px;
         margin-left: 1rem;
       }
 
-      .mode-toggle:hover {
-        color: var(--text-primary);
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
       }
 
-      .sun-icon {
-        display: none;
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
       }
 
-      .moon-icon {
-        display: block;
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bg-tertiary);
+        transition: 0.4s;
+        border-radius: 30px;
+        border: 2px solid var(--border);
       }
 
-      body.light-mode .sun-icon {
-        display: block;
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 2px;
+        background-color: var(--text-secondary);
+        transition: 0.4s;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      body.light-mode .moon-icon {
-        display: none;
+      input:checked + .slider {
+        background: var(--gradient-1);
+        border-color: var(--primary);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(26px);
+        background-color: white;
+      }
+
+      /* Icons on slider */
+      .slider .sun-icon,
+      .slider .moon-icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 14px;
+        transition: opacity 0.3s ease;
+      }
+
+      .slider .sun-icon {
+        left: 8px;
+        opacity: 0;
+        color: #fbbf24;
+      }
+
+      .slider .moon-icon {
+        right: 8px;
+        opacity: 1;
+        color: var(--text-muted);
+      }
+
+      input:checked + .slider .sun-icon {
+        opacity: 1;
+      }
+
+      input:checked + .slider .moon-icon {
+        opacity: 0;
       }
 
       .mobile-toggle {
@@ -830,34 +889,35 @@
           <li><a href="#projects" class="nav-link">Projects</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <button
-          id="modeToggle"
-          class="mode-toggle"
-          aria-label="Toggle dark/light mode"
-        >
-          <svg
-            class="sun-icon"
-            width="24"
-            height="24"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 2zm0 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 12zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9 9.9a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.9 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9-9.9a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0z"
-            />
-          </svg>
-          <svg
-            class="moon-icon"
-            width="24"
-            height="24"
-            fill="currentColor"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
-            />
-          </svg>
-        </button>
+        <div class="mode-toggle">
+          <label class="switch">
+            <input type="checkbox" id="modeToggle" />
+            <span class="slider">
+              <svg
+                class="sun-icon"
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 2zm0 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 12zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9 9.9a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.9 0a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.9-9.9a.5.5 0 0 1 0 .707l-1.414 1.414a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0z"
+                />
+              </svg>
+              <svg
+                class="moon-icon"
+                width="14"
+                height="14"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+                />
+              </svg>
+            </span>
+          </label>
+        </div>
         <div class="mobile-toggle" id="mobileToggle">
           <span></span>
           <span></span>
@@ -1204,13 +1264,7 @@
                 <p>pradivabintang.pb@gmail.com</p>
               </div>
             </div>
-            <div class="contact-item">
-              <div class="contact-icon">📱</div>
-              <div class="contact-details">
-                <h4>Phone</h4>
-                <p>+62 859 3916 5044</p>
-              </div>
-            </div>
+
             <div class="contact-item">
               <div class="contact-icon">📍</div>
               <div class="contact-details">
@@ -1273,18 +1327,6 @@
                 >
                   <path
                     d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"
-                  />
-                </svg>
-              </a>
-              <a href="tel:+6285939165044" class="social-link" title="Phone">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122L9.98 10.42a.68.68 0 0 1-.673-.117l-2.672-2.672a.68.68 0 0 1-.117-.673l.91-1.805a.678.678 0 0 0-.122-.58L3.654 1.328z"
                   />
                 </svg>
               </a>
@@ -1351,13 +1393,14 @@
       // Check for saved user preference, if any, on load of the website
       const darkMode = localStorage.getItem("darkMode");
 
-      // If the user previously selected dark mode, apply it
+      // If the user previously selected light mode, apply it
       if (darkMode === "false") {
         body.classList.add("light-mode");
+        modeToggle.checked = true;
       }
 
-      modeToggle.addEventListener("click", () => {
-        // Toggle light mode on button click
+      modeToggle.addEventListener("change", () => {
+        // Toggle light mode on checkbox change
         body.classList.toggle("light-mode");
 
         // Save user preference to localStorage
